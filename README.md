@@ -2,14 +2,14 @@
 ![Drawer](https://zupimages.net/up/20/24/4988.png)
 ---
 ### About
-[ENG] This is a [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) (or forks) plugin which allows you to add item storage box ! You can configure everything so that it suits you :grin:<br/><br/>
-[FRA] C'est un [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) plugin qui ajoute des boxs de stockage ! Vous pouvez tout configurer pour que ca vous corresponde :grin:
+[ENG] This is a [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) (or forks) plugin which allows you to add item storage box ! You can store as many items in a box as you want. You can configure everything so that it suits you :grin:<br/><br/>
+[FRA] C'est un [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) plugin qui ajoute des boxs de stockage ! Vous pouvez faire stocker dans une box autant d'item que vous voulez. Vous pouvez tout configurer pour que ca vous corresponde :grin:
 
 ---
 ### How to use
-[ENG] All the instructions are in the config
+[ENG] You place the chosen block in the config.yml and you can tap it with an item so that it is inside! To recover, put on a sneaker and hit the box !
 
-[FRA] Tout les instructions sont dans la config
+[FRA] Vous placer le bloc choisi dans la config.yml et vous pouvez taper dessus avec un item pour qu'il soit dedans ! Pour récuperer, mettez vous en sneak et tapez la box !
 
 ##### Here is the video:
 - Drawer Pocketmine plugin in [Youtube](https://youtu.be/VDM0JrPeET0) !
