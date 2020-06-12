@@ -1,0 +1,30 @@
+#Drawer plugin by HiroTeam | Plugin de Drawer par la HiroTeam
+#██╗░░██╗██╗██████╗░░█████╗░████████╗███████╗░█████╗░███╗░░░███╗
+#██║░░██║██║██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔══██╗████╗░████║
+#███████║██║██████╔╝██║░░██║░░░██║░░░█████╗░░███████║██╔████╔██║
+#██╔══██║██║██╔══██╗██║░░██║░░░██║░░░██╔══╝░░██╔══██║██║╚██╔╝██║
+#██║░░██║██║██║░░██║╚█████╔╝░░░██║░░░███████╗██║░░██║██║░╚═╝░██║
+#╚═╝░░╚═╝╚═╝╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝
+#description:
+#ENG: Plugin where you can store items in a box
+#Message tip: write \n for a line break!
+#FRA: Plugin où vous pouvez stocker beaucoups d'items dans une box
+#Astuce pour les messages: ecrivez \n pour un retour à la ligne !
+
+#option
+ItemLimit: 2500 #Limit of the drawer storage | Limite de stockage dans le drawer
+DrawerBlock: "45:0" #Drawer Block ID:META | bloc de Drawer ID:META
+
+#messages
+takedrawer: "§ayou must be on sneak to take into"
+failedToPut: "§cyou must put the same item"
+emptydrawer: "§cDrower is \n empty !"
+isFull: "§cdrawer is full"
+SuccesPutAndUpdate: "§aYou have succes to Update the drawer as {amount}/{limit} {item}"
+SuccesAdd: "§aYou have succes to Add {amount}/{limit} {item}"
+
+#textUI
+TakeUIInDrawerTitle: "Drawer by §4Hiro§bTeam"
+TakeUIText: "Information:\nitem: {item}\ncapacity: {amount}/{limit}\n\nYou can collect your items:"
+TakeUISlider: "Amount"
+succestake: "§aYou hace succesfull take {amount} {item}"
