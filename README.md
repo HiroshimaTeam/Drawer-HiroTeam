@@ -49,4 +49,8 @@ This plugin is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl-3.0.ht
 >
 >You should have received a copy of the GNU General Public License<br/>
 >along with this program.  If not, see http://www.gnu.org/licenses/
+---
+### Author
+- **Discord:** RomainSav#9558
+
 
