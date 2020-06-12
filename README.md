@@ -51,6 +51,6 @@ This plugin is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl-3.0.ht
 >along with this program.  If not, see http://www.gnu.org/licenses/
 ---
 ### Author
-- **Discord:** RomainSav#9558
+- **Discord:** WillyDuGang#6947
 
 
