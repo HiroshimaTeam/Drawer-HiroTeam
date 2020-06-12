@@ -26,7 +26,7 @@
 - **E-mail:** team.hiroshima.dev@gmail.com<br/>
 - **Us PocketMine Server** :link:  https://hirovote.eu<br/>
 
-![HiroTeam](https://zupimages.net/up/20/24/m7ym.png)
+> ![HiroTeam](https://zupimages.net/up/20/24/m7ym.png) </br>
 > ██╗░░██╗██╗██████╗░░█████╗░████████╗███████╗░█████╗░███╗░░░███╗</br>
 > ██║░░██║██║██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔══██╗████╗░████║</br>
 > ███████║██║██████╔╝██║░░██║░░░██║░░░█████╗░░███████║██╔████╔██║</br>
@@ -52,5 +52,3 @@ This plugin is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl-3.0.ht
 ---
 ### Author
 - **Discord:** WillyDuGang#6947
-
-
