@@ -33,9 +33,6 @@ class Drawer extends PluginBase{
         $this->db = new \SQLite3($this->getDataFolder() . "Drawerdb.db");
         $this->db->exec("CREATE TABLE IF NOT EXISTS drawer(item TEXT, amount INT, x INT, y INT, z INT, level TEXT);");
     }
-    public function onDisable() {
-        if (isset($this->db)) $this->db->close();
-    }
     public static function getMainInstance() : self{
         return self::$instance;
     }

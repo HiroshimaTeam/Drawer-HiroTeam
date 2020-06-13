@@ -14,6 +14,7 @@
 #option
 ItemLimit: 2500 #Limit of the drawer storage | Limite de stockage dans le drawer
 DrawerBlock: "45:0" #Drawer Block ID:META | bloc de Drawer ID:META
+LoseItemOnBreak: true #or false or nothing | allows when we break the drawer, we recover less than there is inside the drawer. if you leave the field empty, you will only recover the drawer when it is broken! | permet lorsqu'on casse le drawer, on récupére moins que ce qu'il y a à l'interieur du drawer. si vous laisser le champ vide, vous recuperez uniquement le drawer lorsqu'on le casse !
 
 #messages
 takedrawer: "§ayou must be on sneak to take into"

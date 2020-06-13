@@ -45,18 +45,34 @@ class DrawerListener implements Listener
                 $ItemName = explode(":", $item);
                 $amount = $this -> main -> getItemAmountbyCo($x, $y, $z, $level);
                 $MaxStackSize = Item::get($ItemName[0], $ItemName[1])->getMaxStackSize();
-                $i = 1;
+                $i = 0;
                 $arrayItem = [];
-                while ($i > 0){
-                    $amount = $amount - $MaxStackSize;
-                    if($amount > $MaxStackSize * $i){
-                        $input = Item::get($ItemName[0], $ItemName[1], $MaxStackSize);
-                        array_push($arrayItem, $input);
-                        $i++;
-                    } else {
-                        $input = Item::get($ItemName[0], $ItemName[1], $amount);
-                        array_push($arrayItem, $input);
-                        $i= -1;
+                if($this->main->config->get("LoseItemOnBreak") === true) {
+                    while ($i >= 0) {
+                        $amount = $amount - $MaxStackSize;
+                        if ($amount > $MaxStackSize * $i) {
+                            $input = Item ::get($ItemName[0], $ItemName[1], $MaxStackSize);
+                            array_push($arrayItem, $input);
+                            $i++;
+                        } else {
+                            $input = Item ::get($ItemName[0], $ItemName[1], $amount);
+                            array_push($arrayItem, $input);
+                            $i = -1;
+                        }
+                    }
+                }
+                if($this->main->config->get("LoseItemOnBreak") === false) {
+                    while ($i >= 0) {
+                        if ($amount > $MaxStackSize * $i) {
+                            $amount = $amount - $MaxStackSize;
+                            $input = Item ::get($ItemName[0], $ItemName[1], $MaxStackSize);
+                            array_push($arrayItem, $input);
+                            $i++;
+                        } else {
+                            $input = Item ::get($ItemName[0], $ItemName[1], $amount);
+                            array_push($arrayItem, $input);
+                            $i = -1;
+                        }
                     }
                 }
                 $drawer = $this->main->config->get("DrawerBlock");
