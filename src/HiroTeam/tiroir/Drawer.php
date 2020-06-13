@@ -114,7 +114,7 @@ class Drawer extends PluginBase{
         $numberFinal = $maxStackSize * $nombreslotItem - $number;
         $totalslots = $slots * $maxStackSize;
         $inventaire = $numberFinal + $totalslots;
-        $player->sendMessage($inventaire . "   ". $maxStackSize. "    ". $totalslots. "   ". $numberFinal. " ".$slots. "  ".$number);
+     
         $nombreTotal =  $this->getItemAmountbyCo($x, $y, $z, $level);
 
         if($inventaire <= $nombreTotal){
