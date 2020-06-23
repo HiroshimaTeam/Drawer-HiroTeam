@@ -32,6 +32,9 @@ class DrawerUI
                 unset(self::$level[$player->getName()]);
                 return true;
             }
+            if(Drawer::getMainInstance()->getItemAmountbyCo(self::$x[$player->getName()], self::$y[$player->getName()], self::$z[$player->getName()], self::$level[$player->getName()]) < $data[1]){
+                return false;
+            }
             $player->getInventory()->addItem(Item::get(self::$itemtarget[$player->getName()][0], self::$itemtarget[$player->getName()][1], $data[1]));
             Drawer::getMainInstance()->subtractAmountbyCo($data[1], self::$x[$player->getName()], self::$y[$player->getName()], self::$z[$player->getName()],self::$level[$player->getName()]);
             $player->sendMessage(Drawer::getMainInstance()->getMessage(Drawer::getMainInstance()->config->get("succestake"), Item::get(self::$itemtarget[$player->getName()][0], self::$itemtarget[$player->getName()][1])->getName(), $data[1]));
