@@ -24,12 +24,20 @@ class DrawerListener implements Listener
         $this->main = $main;
     }
     public function PlaceBlock(BlockPlaceEvent $event): void{
+        $item = $event->getItem();
         $block = $event->getBlock();
         $x = $block->x;
         $y = $block->y;
         $z = $block->z;
         $level = $block->getLevel()->getName();
         if($this->main->config->get("DrawerBlock") === $block->getId() . ":" . $block->getDamage()){
+            $isset = $item->getNamedTagEntry("DrawerAmount");
+            if(isset($isset)){
+                $amount = $item->getNamedTagEntry("DrawerAmount")->getValue();
+                $itemIDMETA = $item->getNamedTagEntry("DrawerItem")->getValue();
+                $this->main->PlacePackingDrawerbyIDandCo($x, $y, $z, $level, $itemIDMETA, $amount);
+                return;
+            }
             $this->main->CreateDrawerbyCo($x, $y, $z, $level);
         }
     }
@@ -107,6 +115,15 @@ class DrawerListener implements Listener
         $level = $block->getLevel()->getName();
         if($this->main->config->get("DrawerBlock") === $block->getId() . ":" . $block->getDamage()){
             $event->setCancelled(true);
+            if($this->main->config->get("PackingTape") === $item->getId() . ":" . $item->getDamage()){
+                if($this->main->getItembyCo($x, $y, $z, $level) != NULL or $this->main->getItemAmountbyCo($x, $y, $z, $level) != 0) {
+                    $id = $this -> main -> getIDbyCo($x, $y, $z, $level);
+                    $this -> main -> PackingTapeDrawerbyID($id);
+                }else {
+                    $player -> sendPopup($this -> main -> config -> get("emptydrawer"));
+                }
+                return;
+            }
             if(!$player->isSneaking()){
                 if($item->getId() === 0){
                     $player->sendPopup($this->main->config->get("takedrawer"));

@@ -10,7 +10,12 @@ namespace HiroTeam\drawer;
 #██║░░██║██║██║░░██║╚█████╔╝░░░██║░░░███████╗██║░░██║██║░╚═╝░██║
 #╚═╝░░╚═╝╚═╝╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝
 
+use pocketmine\block\Block;
 use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
+use pocketmine\math\Vector3;
+use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
@@ -31,7 +36,7 @@ class Drawer extends PluginBase{
         }
         $this->config = new Config($this -> getDataFolder() . "config.yml", Config::YAML);
         $this->db = new \SQLite3($this->getDataFolder() . "Drawerdb.db");
-        $this->db->exec("CREATE TABLE IF NOT EXISTS drawer(item TEXT, amount INT, x INT, y INT, z INT, level TEXT);");
+        $this->db->exec("CREATE TABLE IF NOT EXISTS drawer(ID INTEGER PRIMARY KEY, item TEXT, amount INT, x INT, y INT, z INT, level TEXT);");
     }
     public static function getMainInstance() : self{
         return self::$instance;
@@ -51,6 +56,37 @@ class Drawer extends PluginBase{
             return 0;
         }
         return (int)$resultArr["amount"];
+    }
+    public function getIDbyCo($x, $y, $z, $level): int{
+        $result = $this -> db -> query("SELECT ID FROM drawer WHERE x = '$x' AND y = '$y' AND z = '$z' AND level = '$level';");
+        $resultArr = $result -> fetchArray(SQLITE3_ASSOC);
+        return (int)$resultArr["ID"];
+    }
+    public function PackingTapeDrawerbyID($id): void{
+        $result = $this->db->query("SELECT * FROM drawer WHERE ID = '$id';");
+        $resultArr = $result->fetchArray(SQLITE3_ASSOC);
+        $this->getServer()->getLevelByName($resultArr["level"])->setBlock(new Vector3($resultArr["x"], $resultArr["y"], $resultArr["z"]), Block::get(0,0));
+
+        $item = explode(":", $this->config->get("DrawerBlock"));
+        $intoDrawerItem = explode(":", $resultArr["item"]);
+        $drawerPackingTape = ItemFactory::get($item[0], $item[1]);
+        $drawerPackingTape->setCustomName("§eDrawer emballé de §a" . $resultArr["amount"] ." ". Item::get($intoDrawerItem[0], $intoDrawerItem[1])->getName());
+        $drawerPackingTape->setNamedTagEntry(new IntTag("DrawerAmount", $resultArr["amount"]));
+        $drawerPackingTape->setNamedTagEntry(new StringTag("DrawerItem", $resultArr["item"]));
+        $this->getServer()->getLevelByName($resultArr["level"])->dropItem(new Vector3($resultArr["x"], $resultArr["y"], $resultArr["z"]), $drawerPackingTape);
+        $delete = $this->db->prepare("DELETE FROM drawer WHERE ID = '$id';");
+        $delete->execute();
+    }
+
+    public function PlacePackingDrawerbyIDandCo($x, $y, $z, $level, $item, $amount): void{
+        $drawer = $this->db->prepare("INSERT INTO drawer (item, amount, x, y, z, level) VALUES (:item, :amount, :x, :y, :z, :level);");
+        $drawer->bindValue(":item", $item);
+        $drawer->bindValue(":amount", $amount);
+        $drawer->bindValue(":x", $x);
+        $drawer->bindValue(":y", $y);
+        $drawer->bindValue(":z", $z);
+        $drawer->bindValue(":level", $level);
+        $result = $drawer->execute();
     }
     public function CreateDrawerbyCo($x, $y, $z, $level): void{
         $drawer = $this->db->prepare("INSERT INTO drawer (item, amount, x, y, z, level) VALUES (:item, :amount, :x, :y, :z, :level);");
@@ -114,7 +150,6 @@ class Drawer extends PluginBase{
         $numberFinal = $maxStackSize * $nombreslotItem - $number;
         $totalslots = $slots * $maxStackSize;
         $inventaire = $numberFinal + $totalslots;
-      
         $nombreTotal =  $this->getItemAmountbyCo($x, $y, $z, $level);
 
         if($inventaire <= $nombreTotal){
