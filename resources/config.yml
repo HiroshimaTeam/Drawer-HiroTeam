@@ -14,7 +14,7 @@
 #option
 ItemLimit: 2500 #Limit of the drawer storage | Limite de stockage dans le drawer
 DrawerBlock: "45:0" #Drawer Block ID:META | bloc de Drawer ID:META
-
+PackingTape: "500:0"
 
 #LoseItemOnBreak how to config that "When I break my drawer event" | Comment config ici "Consequence de lorsque je casse mon drawer"
 #set true to recover the drower and all its contents | mettre true pour récupérer le drower et tout son contenue
