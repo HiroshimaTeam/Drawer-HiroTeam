@@ -23,7 +23,7 @@ class DrawerUI
     private static $level;
     public static function TakeInDrawerUI(Player $player, $x, $y, $z, $level){
         $form = self::createCustomForm(function (Player $player, array $data = null) {
-            $result = $data[0];
+            $result = $data[0] ?? null;
             if ($result === null) {
                 unset(self::$itemtarget[$player->getName()]);
                 unset(self::$x[$player->getName()]);
