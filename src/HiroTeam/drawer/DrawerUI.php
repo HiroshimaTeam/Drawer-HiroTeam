@@ -43,6 +43,7 @@ class DrawerUI
             unset(self::$y[$player->getName()]);
             unset(self::$z[$player->getName()]);
             unset(self::$level[$player->getName()]);
+            return true;
         });
         $item = Drawer::getMainInstance()->getItembyCo($x, $y, $z, $level);
         $ItemName = explode(":", $item);
